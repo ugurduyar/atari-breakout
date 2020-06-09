@@ -101,6 +101,20 @@ function movePaddle() {
   }
 }
 
+// Move ball
+function moveBall() {
+  ball.x += ball.dx;
+  ball.y += ball.dy;
+
+  //   Collision detection
+  if (ball.x + ball.size > canvas.width || ball.x - ball.size < 0) {
+    ball.dx *= -1; // ball.dx = ball.dx * -1
+  }
+  if (ball.y + ball.size > canvas.height || ball.y - ball.size < 0) {
+    ball.dy *= -1;
+  }
+}
+
 // Draw function
 function draw() {
   // Clear canvas
@@ -115,6 +129,7 @@ function draw() {
 // Update animations
 function update() {
   movePaddle();
+  moveBall();
 
   // Draw
   draw();

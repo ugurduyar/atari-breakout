@@ -139,6 +139,13 @@ function moveBall() {
       }
     });
   });
+
+  //   Bottom wall collision
+  if (ball.y + ball.size > canvas.height) {
+    showAllBricks();
+    score = 0;
+    scoreNew.innerText = `Score:${score}`;
+  }
 }
 
 // Make all bricks appear

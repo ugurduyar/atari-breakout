@@ -28,9 +28,10 @@ canvas {
 .btn {
   cursor: pointer;
   border: 0;
+  margin-top: 20px;
   padding: 10px 20px;
-  background: black;
-  color: yellow;
+  background: yellow;
+  color: black;
   border-radius: 5px;
 }
 
@@ -50,19 +51,28 @@ canvas {
   position: absolute;
   top: 30px;
   left: 30px;
+  cursor: pointer;
+  border: 0;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: black;
+  color: yellow;
+  border-radius: 5px;
 }
 
 .rules {
   position: absolute;
   left: 0;
   top: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: black;
+  color: yellow;
   min-height: 100vh;
   width: 380px;
   padding: 20px;
   padding-top: 200px;
   line-height: 1.5;
   transform: translateX(-400px);
+  transition: transform 1s ease-in-out;
 }
 
 .rules.show {

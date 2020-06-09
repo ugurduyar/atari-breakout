@@ -2,7 +2,9 @@ const rulesBtn = document.getElementById("rules-btn");
 const closeBtn = document.getElementById("close-btn");
 const rules = document.getElementById("rules");
 const canvas = document.getElementById("canvas");
+const scoreNew = document.getElementById("score-new");
 const ctx = canvas.getContext("2d");
+
 let score = 0;
 
 const brickRowCount = 9;
@@ -23,7 +25,7 @@ const paddle = {
   x: canvas.width / 2 - 40,
   y: canvas.height - 20,
   w: 80,
-  h: 10,
+  h: 15,
   speed: 8,
   dx: 0,
 };
@@ -85,15 +87,59 @@ function drawScore() {
   ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
 }
 
+// Paddle move
+function movePaddle() {
+  paddle.x += paddle.dx;
+
+  // Wall detection
+  if (paddle.x + paddle.w > canvas.width) {
+    paddle.x = canvas.width = paddle.w;
+  }
+
+  if (paddle.x < 0) {
+    paddle.x = 0;
+  }
+}
+
 // Draw function
 function draw() {
+  // Clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   drawPaddle();
   drawBall();
   drawScore();
   drawBricks();
 }
 
-draw();
+// Update animations
+function update() {
+  movePaddle();
+
+  // Draw
+  draw();
+
+  requestAnimationFrame(update);
+}
+
+update();
+
+// Keydown event
+function keyDown(e) {
+  if (e.key === "Right" || e.key === "ArrowRight" || e.key === "d") {
+    paddle.dx = paddle.speed;
+  } else if (e.key === "Left" || e.key === "ArrowLeft" || e.key === "a") {
+    paddle.dx = -paddle.speed;
+  }
+}
+
+function keyUp(e) {
+  console.log(2);
+}
+
+// Keybinds
+document.addEventListener("keydown", keyDown);
+document.addEventListener("keyup", keyUp);
 
 // Rules and close event handler
 rulesBtn.addEventListener("click", () => rules.classList.add("show"));

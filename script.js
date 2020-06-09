@@ -83,8 +83,8 @@ function drawBricks() {
 }
 
 function drawScore() {
-  ctx.font = "20px Arial";
-  ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
+  //   ctx.font = "20px Arial";
+  //   ctx.fillText(`Score: ${score}`, canvas.width - 11100, 30);
 }
 
 // Paddle move
@@ -134,10 +134,26 @@ function moveBall() {
         ) {
           ball.dy *= -1;
           brick.visible = false;
+          increaseScore();
         }
       }
     });
   });
+}
+
+// Make all bricks appear
+function showAllBricks() {
+  bricks.forEach((column) => {
+    column.forEach((brick) => (brick.visible = true));
+  });
+}
+
+function increaseScore() {
+  score++;
+  scoreNew.innerText = `Score:${score}`;
+  if (score % (brickRowCount * brickRowCount) === 0) {
+    showAllBricks();
+  }
 }
 
 // Draw function

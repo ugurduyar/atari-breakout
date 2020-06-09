@@ -26,7 +26,7 @@ const paddle = {
   y: canvas.height - 20,
   w: 80,
   h: 15,
-  speed: 8,
+  speed: 18,
   dx: 0,
 };
 
@@ -93,7 +93,7 @@ function movePaddle() {
 
   // Wall detection
   if (paddle.x + paddle.w > canvas.width) {
-    paddle.x = canvas.width = paddle.w;
+    paddle.x = canvas.width - paddle.w;
   }
 
   if (paddle.x < 0) {
@@ -134,7 +134,16 @@ function keyDown(e) {
 }
 
 function keyUp(e) {
-  console.log(2);
+  if (
+    e.key === "Right" ||
+    e.key === "ArrowRight" ||
+    e.key === "d" ||
+    e.key === "Left" ||
+    e.key === "ArrowLeft" ||
+    e.key === "a"
+  ) {
+    paddle.dx = 0;
+  }
 }
 
 // Keybinds
